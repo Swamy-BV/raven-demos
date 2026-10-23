@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Raven vehicle tracking on NXP i.MX95: NPU vision, ROS 2 guidance and M7 PX4 hardware-in-the-loop.">
+  <title>Raven | Six-car tracking</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10151c; color: #ecf0f5; }
+    body { margin: 0; }
+    main { max-width: 1080px; margin: 0 auto; padding: 36px 20px; }
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    h1 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); }
+    .tag { color: #9ce3c0; border: 1px solid #345948; border-radius: 24px; padding: 6px 12px; }
+    p { color: #b6c2d1; line-height: 1.6; }
+    a { color: #a0ceff; text-underline-offset: 3px; }
+    video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; }
+    .controls, nav { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 18px; }
+    button { font: inherit; background: #192633; color: #ecf0f5; border: 1px solid #43556c; border-radius: 8px; padding: 10px 14px; cursor: pointer; }
+    button[aria-pressed="true"] { border-color: #9ce3c0; color: #9ce3c0; }
+    button:focus-visible, a:focus-visible { outline: 3px solid #a0ceff; outline-offset: 4px; }
+    #status { min-height: 1.6em; font-size: .9rem; }
+    footer { margin-top: 28px; border-top: 1px solid #2b3746; padding-top: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Raven / Six-car tracking</h1>
+      <span class="tag">NXP i.MX95</span>
+    </header>
+    <p>NPU vision and ROS 2 guidance on Linux. Flight control on Cortex-M7 PX4.</p>
+    <video id="demo" controls playsinline preload="metadata" poster="images/six-car-tracking.png" aria-label="Six-car tracking demonstration">
+      <source src="https://github.com/Swamy-BV/raven-demos/releases/download/showcase-2026-10-22/raven-six-car-tracking-preview.mp4" type="video/mp4">
+      Your browser does not support this video. Use the MP4 links below.
+    </video>
+    <div class="controls" role="group" aria-label="Video quality">
+      <button type="button" data-quality="preview" aria-pressed="true">Small preview / 360p</button>
+      <button type="button" data-quality="full" aria-pressed="false">Full quality / 720p</button>
+    </div>
+    <p id="status" role="status">76-second demonstration. Press play to watch.</p>
+    <nav aria-label="Project links">
+      <a href="https://github.com/Swamy-BV/raven-manifest/tree/develop">Build Raven</a>
+      <a href="https://github.com/Swamy-BV/meta-raven/tree/develop">Onboard software</a>
+      <a href="https://github.com/Swamy-BV/raven-demos/releases/tag/showcase-2026-10-22">MP4 files and checksums</a>
+    </nav>
+    <footer>
+      <p>Real i.MX95 onboard compute and M7 PX4 control a simulated AirSim aircraft.
+        This demonstrates hardware-in-the-loop operation, not physical flight.
+        Visual odometry is a separate evaluation and does not control this demo.</p>
+    </footer>
+  </main>
+  <script>
+    const video = document.getElementById('demo');
+    const status = document.getElementById('status');
+    const buttons = document.querySelectorAll('[data-quality]');
+    const root = 'https://github.com/Swamy-BV/raven-demos/releases/download/showcase-2026-10-22/';
+    const files = {
+      preview: 'raven-six-car-tracking-preview.mp4',
+      full: 'raven-six-car-tracking.mp4'
+    };
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        if (button.getAttribute('aria-pressed') === 'true') return;
+        const position = video.currentTime;
+        const resume = !video.paused;
+        for (const item of buttons) item.setAttribute('aria-pressed', String(item === button));
+        video.src = root + files[button.dataset.quality];
+        video.addEventListener('loadedmetadata', () => {
+          video.currentTime = Math.min(position, video.duration);
+          if (resume) video.play().catch(() => { status.textContent = 'Press play to continue.'; });
+        }, { once: true });
+        video.load();
+        status.textContent = 'Loading ' + button.textContent.toLowerCase() + '.';
+      });
+    }
+    video.addEventListener('playing', () => { status.textContent = 'Playing / six-car tracking on NXP i.MX95.'; });
+    video.addEventListener('waiting', () => { status.textContent = 'Buffering video.'; });
+    video.addEventListener('error', () => { status.textContent = 'Playback failed. Try the other quality or open the MP4 files below.'; });
+    video.addEventListener('ended', () => { status.textContent = 'Demonstration complete.'; });
+  </script>
+</body>
+</html>
