@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Raven vehicle tracking on NXP i.MX95: NPU vision, ROS 2 guidance and M7 PX4 hardware-in-the-loop.">
-  <title>Raven | Five-bridge tracking</title>
+  <title>Raven | City vehicle tracking</title>
   <style>
     :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #10151c; color: #ecf0f5; }
     body { margin: 0; }
@@ -24,27 +24,27 @@
 <body>
   <main>
     <header>
-      <h1>Raven / Five-bridge tracking</h1>
+      <h1>Raven / City vehicle tracking</h1>
       <span class="tag">NXP i.MX95</span>
     </header>
-    <p>Six cars, five bridge occlusions. NPU vision and ROS 2 guidance on Linux; flight control on Cortex-M7 PX4.</p>
-    <video id="demo" controls playsinline preload="metadata" poster="images/six-car-tracking.png" aria-label="Six-car tracking through five bridges">
-      <source src="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-23/raven-bridge-recovery-720p.mp4" type="video/mp4">
+    <p>Selected-car following among 21 vehicles, intersections and roundabouts. NPU vision and ROS 2 guidance on Linux; flight control on Cortex-M7 PX4.</p>
+    <video id="demo" controls playsinline preload="metadata" poster="images/city-tracking.png" aria-label="City vehicle tracking on NXP FRDM-IMX95">
+      <source src="https://github.com/Swamy-BV/raven-demos/releases/download/city-2026-10-23/raven-city-tracking-720p.mp4" type="video/mp4">
       Your browser does not support this video. Use the MP4 link below.
     </video>
-    <p id="status" role="status">720p · 76-second demonstration. Press play to watch.</p>
+    <p id="status" role="status">720p · 2-minute 39-second demonstration. Press play to watch.</p>
     <nav aria-label="Project links">
-      <a href="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-23/raven-bridge-recovery-720p.mp4">Open 720p MP4</a>
+      <a href="https://github.com/Swamy-BV/raven-demos/releases/download/city-2026-10-23/raven-city-tracking-720p.mp4">Open 720p MP4</a>
       <a href="https://github.com/Swamy-BV/raven-manifest/tree/develop">Build Raven</a>
       <a href="https://github.com/Swamy-BV/meta-raven/tree/develop">Onboard software</a>
-      <a href="https://github.com/Swamy-BV/raven-demos/releases/tag/bridges-2026-10-23">MP4 files and checksums</a>
+      <a href="https://github.com/Swamy-BV/raven-demos/releases/tag/city-2026-10-23">MP4 files and checksums</a>
     </nav>
     <footer>
       <p>Real i.MX95 onboard compute and M7 PX4 control a simulated AirSim aircraft.
         This demonstrates hardware-in-the-loop operation, not physical flight.
-        The same selected identity was recovered after all five bridges. Active following
-        reached 92%, passing the 90% test requirement. This includes fresh observations
-        and prediction bounded by age and uncertainty; visual gaps lasted up to 1.93 seconds.
+        The recording includes roughly 140 seconds of moving-target following.
+        The run ended in target-loss hold after overshooting a slowing car; braking and
+        stand-off control remain under development.
         Visual odometry is a separate evaluation and does not control this demo.</p>
     </footer>
   </main>
@@ -52,9 +52,9 @@
     const video = document.getElementById('demo');
     const status = document.getElementById('status');
     video.addEventListener('loadedmetadata', () => {
-      status.textContent = '720p · 76-second demonstration. Press play to watch.';
+      status.textContent = '720p · 2-minute 39-second demonstration. Press play to watch.';
     });
-    video.addEventListener('playing', () => { status.textContent = 'Playing / six cars and five bridges on NXP i.MX95.'; });
+    video.addEventListener('playing', () => { status.textContent = 'Playing / city vehicle tracking on NXP FRDM-IMX95.'; });
     video.addEventListener('waiting', () => { status.textContent = 'Buffering video.'; });
     video.addEventListener('error', () => { status.textContent = 'Playback failed. Open the 720p MP4 below.'; });
     video.addEventListener('ended', () => { status.textContent = 'Demonstration complete.'; });
