@@ -6,7 +6,9 @@ Hardware-connected demonstrations of the Raven drone platform on **NXP FRDM-IMX9
 
 ## Six-car tracking
 
-[![Selected-car tracking on NXP i.MX95](images/six-car-tracking.png)](https://github.com/Swamy-BV/raven-demos/releases/tag/showcase-2026-10-22)
+[Watch in your browser](https://swamy-bv.github.io/raven-demos/)
+
+[![Selected-car tracking on NXP i.MX95](images/six-car-tracking.png)](https://swamy-bv.github.io/raven-demos/)
 
 The selected car moves through a six-car lane-shuffle scene. i.MX95 Linux runs
 NPU detection, vehicle appearance matching, tracking and guidance. PX4/NuttX on
@@ -25,5 +27,5 @@ physical flight has not been qualified. GPS-denied VIO is a separate shadow-mode
 evaluation and is not controlling this demo.
 
 Videos are release assets, outside Git history. This repository contains only
-the gallery, thumbnails and license. Raven-authored gallery content is licensed
+the gallery page, thumbnails and license. Raven-authored gallery content is licensed
 under AGPL-3.0-only; third-party components retain their own licenses.
