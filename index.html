@@ -29,21 +29,22 @@
     </header>
     <p>Six cars, five bridge occlusions. NPU vision and ROS 2 guidance on Linux; flight control on Cortex-M7 PX4.</p>
     <video id="demo" controls playsinline preload="metadata" poster="images/six-car-tracking.png" aria-label="Six-car tracking through five bridges">
-      <source src="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-22/raven-five-bridges-720p.mp4" type="video/mp4">
+      <source src="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-23/raven-bridge-recovery-720p.mp4" type="video/mp4">
       Your browser does not support this video. Use the MP4 link below.
     </video>
     <p id="status" role="status">720p · 76-second demonstration. Press play to watch.</p>
     <nav aria-label="Project links">
-      <a href="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-22/raven-five-bridges-720p.mp4">Open 720p MP4</a>
+      <a href="https://github.com/Swamy-BV/raven-demos/releases/download/bridges-2026-10-23/raven-bridge-recovery-720p.mp4">Open 720p MP4</a>
       <a href="https://github.com/Swamy-BV/raven-manifest/tree/develop">Build Raven</a>
       <a href="https://github.com/Swamy-BV/meta-raven/tree/develop">Onboard software</a>
-      <a href="https://github.com/Swamy-BV/raven-demos/releases/tag/bridges-2026-10-22">MP4 files and checksums</a>
+      <a href="https://github.com/Swamy-BV/raven-demos/releases/tag/bridges-2026-10-23">MP4 files and checksums</a>
     </nav>
     <footer>
       <p>Real i.MX95 onboard compute and M7 PX4 control a simulated AirSim aircraft.
         This demonstrates hardware-in-the-loop operation, not physical flight.
-        The selected car was reacquired after all five bridges. Active following was 84%;
-        the 90% sustained-following target remains unmet.
+        The same selected identity was recovered after all five bridges. Active following
+        reached 92%, passing the 90% test requirement. This includes fresh observations
+        and prediction bounded by age and uncertainty; visual gaps lasted up to 1.93 seconds.
         Visual odometry is a separate evaluation and does not control this demo.</p>
     </footer>
   </main>
