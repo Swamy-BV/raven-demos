@@ -20,7 +20,7 @@ Windows AirSim supplies the scene, camera and simulated sensor data.
 - **Flight control:** M7 PX4 receives guidance over the onboard RPMsg DDS link.
 - **Recording:** approximately 76 seconds, including a 61-second following test.
 
-[Small MP4 preview (6.35 MB)](https://github.com/Swamy-BV/raven-demos/releases/download/showcase-2026-10-22/raven-six-car-tracking-preview.mp4) | [Full-quality MP4 (78.86 MB)](https://github.com/Swamy-BV/raven-demos/releases/download/showcase-2026-10-22/raven-six-car-tracking.mp4)
+[720p MP4 (34.87 MB)](https://github.com/Swamy-BV/raven-demos/releases/download/showcase-2026-10-22/raven-six-car-tracking-720p.mp4)
 
 This demonstrates simulated flight with real onboard compute and flight control;
 physical flight has not been qualified. GPS-denied VIO is a separate shadow-mode
